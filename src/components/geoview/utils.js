@@ -127,8 +127,10 @@ function findMedianRange(values) {
 
 function updateValues(geoJson, options) {
   var values = [];
+  console.log('updateValues', geoJson, options);
   _.each(geoJson.features, (item) => {
     item.value = options.data[item.properties.name];
+    console.log('item',item);
     if (!_.isUndefined(item.value)) {
       values.push(item.value);
     }

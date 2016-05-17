@@ -20,7 +20,9 @@ export class GeoViewComponent extends events.EventEmitter {
         _.each(data.cells, (cell) => {
           var dimension = _.first(cell.dimensions);
           var measure = _.find(cell.measures, {key: params.aggregates});
-          result[dimension.nameValue] = measure.value;
+          var nameValue = dimension.nameValue.replace(/^[-0-9 .]+/,''); //TODO: Remove when not necessary
+          console.log("MAPMAP", dimension.nameValue, nameValue);
+          result[nameValue] = measure.value;
         });
 
         this.emit('endAggregate', that, data);
